@@ -1,0 +1,56 @@
+﻿<Window x:Class="MVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVM"
+        mc:Ignorable="d"
+        Title="Main Window" Height="400" Width="300">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="listBoxRowDefinition"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Name="MainWindowStackPanel" Grid.Row="1">          
+            
+            <Label Content="Username:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
+            
+            <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Width="120" Text="{Binding ElementName=AllUsersListBox, Path=SelectedItem.UserName}"/>
+            
+            <Label Content="Password:" HorizontalAlignment="Left" VerticalAlignment="Top" 
+               Width="75"/>
+            
+            <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Width="120"
+                 Text="{Binding ElementName=AllUsersListBox, Path=SelectedItem.UserPass}"/>
+            
+            <Label Content="Is admin:" HorizontalAlignment="Left"
+                VerticalAlignment="Top" Width="75"/>
+            
+            <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Width="120"
+                 Text="{Binding ElementName=AllUsersListBox, Path=SelectedItem.IsAdmin}"/>
+            
+            <Label Content=""/>
+            
+            <Button Name="saveButton" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120"
+                    Command="{Binding SaveCommand}"/>
+            
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Name="listBoxStackPanel" Grid.Row="0">
+            <ListBox ItemsSource="{Binding Users}" DisplayMemberPath="UserName" 
+                 Name="AllUsersListBox" HorizontalAlignment="Center" SelectedItem="{Binding UserToSave}"
+                 VerticalAlignment="Center" ClipToBounds="True" Grid.Row="0"
+                 Width="{Binding ElementName=MainWindowStackPanel, Path=ActualWidth}"
+                 Height="{Binding ElementName=listBoxStackPanel, Path=ActualHeight}"/>
+        </StackPanel>
+
+    </Grid>
+    
+</Window>

@@ -1,0 +1,56 @@
+﻿<Window x:Class="MVVM.AddUserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVM"
+        mc:Ignorable="d"
+        Title="Add New User Window" Height="300" Width="300" Loaded="Window_Loaded">
+    
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+
+            <StackPanel Orientation="Vertical" Name="userNameStackPanel" 
+                        HorizontalAlignment="Center">
+                <Label Content="Username:" VerticalAlignment="Top"/>
+
+                <TextBox Text="{Binding CurrentUser.UserName}" Height="23"
+                TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            </StackPanel>
+            
+
+            <StackPanel Orientation="Vertical" Name="userPasswordStackPanel"
+                        HorizontalAlignment="Center">
+                <Label Content="User password:"/>
+
+                <TextBox Text="{Binding CurrentUser.UserPass}"  HorizontalAlignment="Left" 
+                 VerticalAlignment="Top" Width="120" Height="23"/>
+            </StackPanel>
+            
+
+            <StackPanel Name="isAdminStackPanel" Orientation="Vertical" 
+                        HorizontalAlignment="Center">
+                <Label Content="Is admin:" HorizontalAlignment="Left"
+                VerticalAlignment="Top"/>
+
+                <TextBox Text="{Binding CurrentUser.IsAdmin}" HorizontalAlignment="Left" Height="23" 
+                TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            </StackPanel> 
+            
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" >
+            <Button Command="{Binding AddNewUserCommand}" Content="Add user" VerticalAlignment="Center"
+                Width="120" Grid.Row="1" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+    
+</Window>
